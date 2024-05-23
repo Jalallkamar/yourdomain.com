@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Ticket Booking</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <nav id="navbar">
+    <div class="container">
+      <h1>Movie Ticket Booking</h1>
+      <ul>
+        <li><a href="#add-money-section">Add Money</a></li>
+        <li><a href="#movies-section">Movies</a></li>
+        <li><a href="#checkout-section">Checkout</a></li>
+        <li><a href="#about-section">About</a></li>
+        <li><a href="#contact-section">Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section id="add-money-section" class="container">
+    <h2>Add Money to Wallet</h2>
+    <div id="add-money">
+      <input type="number" id="amount" placeholder="Enter amount">
+      <button onclick="addWallet()">Add to Wallet</button>
+      <p id="wallet-message"></p>
+    </div>
+  </section>
+
+  <section id="movies-section" class="container">
+    <h2>Movie List</h2>
+  
+    <div id="movies">
+      <div class="movie">
+        <img src="gKkl37BQuKTanygYQG1pyYgLVgf.jpg" alt="Movie 1" width="150">
+        <p>Many years after Caesar's reign, a small monkey appears in the middle of the New World, where it makes many decisions that will change the future of apes and humans forever.</p>
+      </div>
+
+      <div class="movie">
+        <img src="e1J2oNzSBdou01sUvriVuoYp0pJ.jpg" alt="Movie 2" width="150">
+        <p>The Spengler family returns to where it all started — the symbolic fire station in New York City — to collaborate with the original team of ghostbusters, who set up a secret research lab to raise the bar for ghost fighting. But when the discovery of an ancient relic detonates an evil force, new and old ghost hunters must unite to protect their homes and save the world from a second ice age.</p>
+      </div>
+
+      <div class="movie">
+        <img src="kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg" alt="Movie 3" width="150">
+        <p>kung fu pandaAdditional adventures of the wide-eyed po of ancient China, whose love for kung fu is matched only by an insatiable appetite.</p>
+      </div>
+
+      <div class="movie">
+        <img src="czembW0Rk1Ke7lCJGahbOhdCuhV.jpg" alt="Movie 4" width="150">
+        <p>Follow the legendary journey of Paul Atreides as he unites with Chaney and Freeman while on a war route to avenge the conspirators who destroyed his family. Faced with the choice between the love of his life and the known fate of the universe, Paul seeks to prevent a terrible future that only he can predict</p>
+      </div>
+
+      <div class="movie">
+        <img src="cxevDYdeFkiixRShbObdwAHBZry.jpg" alt="Movie 5" width="150">
+        <p>Insurgents prepare for battle against the fierce forces of the "mother planet", as bonds solidify, heroes emerge and legends are born.</p>
+      </div>
+      <div class="movie">
+        <img src="hu40Uxp9WtpL34jv3zyWLb5zEVY.jpg" alt="Movie 6" width="150">
+        <p>Fate brings together a group of characters of different nationalities at the bottom of the Atlantic Ocean when their plane lands, and they have to fight against lack of oxygen and sharks in order to survive.</p>
+      </div>
+    </div>
+    <div id="search_bar">
+      <input type="text" id="search" placeholder="Search movie">
+      <button onclick="searchMovie()">Search</button>
+    </div>
+  </section>
+
+  <section id="checkout-section" class="container">
+    <h2>Checkout</h2>
+    <div id="checkout-message"></div>
+
+    ?<php>
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $servername = "localhost";
+        $username = "root"; // default XAMPP username
+        $password = ""; // default XAMPP password
+        $dbname = "movie_booking";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $movie = $_POST['movie'];
+        $user_name = $_POST['user_name'];
+        $number_of_seats = $_POST['number_of_seats'];
+
+        $sql = "INSERT INTO bookings (movie, user_name, number_of_seats) VALUES ('$movie', '$user_name', '$number_of_seats')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "<p>New record created successfully</p>";
+        } else {
+            echo "<p>Error: " . $sql . "<br>" . $conn->error . "</p>";
+        }
+
+        $conn->close();
+    }
+  </php>
+    <div id="user-detail">
+      <select id="movie_selection">
+        <option value="Planet Of The Apes">Planet of the apes</option>
+        <option value="Ghost Busters">Ghost busters</option>
+        <option value="Kung Fu Panda">kung fu panda</option>
+        <option value="Dune">Dune</option>
+        <option value="Rebel Moon">Rebel Moon</option>
+        <option value="No Way Up">No Way Up</option>
+      </select>
+      <input type="text" id="user_name" placeholder="Your Name"> 
+      <input type="number" id="number_of_seats" placeholder="Number of Seats">
+      <button onclick="bookingMovie()">Book Tickets</button>
+    </div>
+    <div id="movie"></div>
+  </section>
+
+  <section id="about-section" class="container">
+    <h2>About Us</h2>
+    <p>what's better than spending hours of relaxation watching your favourite movie with your best person...I guess nothing is better.
+
+  <section id="contact-section" class="container">
+    <h2>Contact Us</h2>
+    <p>For any inquiries or issues, feel free to contact us:</p>
+    <div class="contact-info">
+      <p><strong>Email:</strong> contact@movieticketbooking.com</p>
+      <p><strong>Phone:</strong> +1 (123) 456-7890</p>
+      <p><strong>Address:</strong> 123 Movie St, Cityville, Lebanon</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="social-media">
+        <a href="#"><img src="th (1).jpeg" alt=" Twitter Facebook Instagram"></a>
+    
+      </div>
+      <p>&copy; 2024 Movie Ticket Booking. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+
+</html>
